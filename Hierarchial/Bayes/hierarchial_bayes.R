@@ -8,12 +8,11 @@ options(mc.cores = parallel::detectCores())
 set.seed(999)
 
 # --------------------------
-# Èåğàğõè÷åñêàÿ ìîäåëü:
 # y_1 = [b_10 + b_11 * x_11  > 0]
 # y_2 = [b_20 + b_21 * x_11 + b_22 * y1 > 0]
 # --------------------------
 
-N <- 1000                                 # ÷èñëî íàáëşäåíèé
+N <- 1000                                
 
 x_11 <- runif(n=N, min=0, max=2)
 
@@ -34,11 +33,11 @@ beta_2 <- matrix(c(-1, 2, -2), nrow=3)
 y_star_2 <- as.vector(X_2 %*% beta_2 + epsilon_2) > 0
 
 y_star <- cbind(y_star_1, y_star_2)
-colMeans(y_star) # ñëåäèì, ÷òîáû áûëî ïî 0.5
-# Ïğîöåññ ãåíåğàöèè çàïèñàëè â ôóíêöèş generate_sample
+colMeans(y_star)
+
 # --------------------------
 
-# Stan ìîäåëü
+# Stan 
 # --------------------------
 
 rnames = c("b_10","b_11", "b_20", "b_21", "b_22", "rho",
@@ -50,9 +49,8 @@ names(df) <- rnames
 df = df[FALSE,]
 
 N <- 100
-n_iters <- 100 # ÷èñëî èòåğàöèé
+n_iters <- 100 
 
-# Íà÷íåì ïğîãîíû!
 for (i in 1:n_iters){
   
   sample <- generate_sample(N)
@@ -80,9 +78,6 @@ for (i in 1:n_iters){
 }  
 names(df) <- rnames
 
-# --------------------------
-
-# Ñìîòğèì íà ğåçóëüòàòû
 # --------------------------
 df
 write.csv(df, file = "/Users/User/Desktop/hier/estimates_hier_bayes_1000.csv")
