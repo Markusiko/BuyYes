@@ -36,7 +36,6 @@ y_star <- cbind(y_star_1, y_star_2)
 colMeans(y_star)
 
 # --------------------------
-
 # Stan 
 # --------------------------
 
