@@ -47,7 +47,6 @@ df <- data.frame(t(rep(0, length(rnames))))
 names(df) <- rnames
 df = df[FALSE,]
 
-N <- 1000
 n_iters <- 100 
 
 for (i in 1:n_iters){
